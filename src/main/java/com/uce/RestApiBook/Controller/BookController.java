@@ -20,6 +20,11 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
+    @GetMapping("/findByPriceRange")
+    public ResponseEntity<List<Book>> findByPriceRange(){
+        return ResponseEntity.ok(bookRepository.findByPriceBetween(20.0, 60.0));
+    }
+
     @Operation(summary = "This method use for list books")
     @GetMapping("/books")
     public ResponseEntity<List<Book>> bookList() {
